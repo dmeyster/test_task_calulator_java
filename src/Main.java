@@ -10,6 +10,10 @@ public class Main {
     public static String calc(String expression) {
         String[] splitedexpression = expression.split(" ");                                                       //разделяем входную строку на части по пробелам должны получится два числа и знак операции
 
+        if (splitedexpression.length > 3){                                                                              // Не выбрасывается исключение при вводе более двух операндов, например, 1 + 1 + 1
+            return("throws Exception");
+        }
+
         try{                                                                                                            //try и parseint помогают определить число арабское или римское если оба арабские то смотри строку 20 если оба римские смотри строку 47
             int number1 = Integer.parseInt(splitedexpression[0]);
             if ((number1 < 0)||(number1 > 10)){                                                                         //Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более. На выходе числа не ограничиваются по величине и могут быть любыми.
@@ -43,7 +47,7 @@ public class Main {
                 return("throws Exception");
             }
             catch (NumberFormatException e2){
-                if ((splitedexpression[0].length() < 2)||(splitedexpression[2].length() < 2)){                          //Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более. На выходе числа не ограничиваются по величине и могут быть любыми. Римские числа больше 10 имеет длинну в два символа минимум
+                if ((splitedexpression[0].length() > 1)||(splitedexpression[2].length() > 1)){                          //Калькулятор должен принимать на вход числа от 1 до 10 включительно, не более. На выходе числа не ограничиваются по величине и могут быть любыми. Римские числа больше 10 имеет длинну в два символа минимум
                     return("throws Exception");
                 }
                 char[] number1 = new char[splitedexpression[0].length()];                                               //превращаем string в массив char для удобства конверсии в арабские цифры
